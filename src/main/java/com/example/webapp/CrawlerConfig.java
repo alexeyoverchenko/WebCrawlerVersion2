@@ -6,14 +6,14 @@ import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
-public class CrawlerController {
+public class CrawlerConfig {
 
     public void startCrawler() throws Exception {
 
         final String SEED_PAGE = "https://en.wikipedia.org/wiki/Elon_Musk";
         final String CRAWL_STORAGE = "src/test/resources/crawler4j";
-        final int MAX_CRAWL_DEPTH = 1;
-        final int MAX_PAGE_TO_FETCH = 50;
+        final int MAX_CRAWL_DEPTH = 8;
+        final int MAX_PAGE_TO_FETCH = 10000;
         final int NUMBER_OF_CRAWLERS = 4;
 
         CrawlConfig config = new CrawlConfig();

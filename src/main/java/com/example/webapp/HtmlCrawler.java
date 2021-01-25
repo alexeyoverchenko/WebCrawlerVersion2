@@ -31,12 +31,12 @@ public class HtmlCrawler extends WebCrawler{
             String textFromUrl = htmlParseData.getText();
             Site site = new Site();
             site.setUrl(page.getWebURL().toString());
-            site.setKeywords(findWord(textFromUrl, site));
+            site.setKeywords(findKeywords(textFromUrl, site));
             WebCrawlerApp.getFinalSites().add(site);
         }
     }
 
-    public Map<String, Integer> findWord(String textFromUrl, Site site) {
+    public Map<String, Integer> findKeywords(String textFromUrl, Site site) {
         Map<String, Integer> keywordsCount = new LinkedHashMap<>();
         int totalCount = 0;
         for (Map.Entry<String, Integer> pointWord : site.getKeywords().entrySet()) {

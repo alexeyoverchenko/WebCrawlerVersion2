@@ -16,7 +16,7 @@ public class WebCrawlerApp {
     static final String WRITING_PATH = "/Users/antonpus/Work/MyWork/webCrawler2.csv";
 
     public static void main(String[] args) throws Exception {
-        CrawlerController crawlController = new CrawlerController();
+        CrawlerConfig crawlController = new CrawlerConfig();
         crawlController.startCrawler();
         Collections.sort(finalSites);
         writeSitesToFile();
