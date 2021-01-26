@@ -5,12 +5,15 @@ import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HtmlCrawler extends WebCrawler{
+    public static List<String> links = new ArrayList();
 
     private final static Pattern FILTERS = Pattern
             .compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
@@ -23,13 +26,11 @@ public class HtmlCrawler extends WebCrawler{
 
     @Override
     public void visit(Page page) {
-        String url = page.getWebURL().getURL();
-        System.out.println("URL: " + url);
-
         if (page.getParseData() instanceof HtmlParseData) {
             HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
             String textFromUrl = htmlParseData.getText();
             Site site = new Site();
+            links.add(page.getWebURL().toString());
             site.setUrl(page.getWebURL().toString());
             site.setKeywords(findKeywords(textFromUrl, site));
             WebCrawlerApp.getFinalSites().add(site);
