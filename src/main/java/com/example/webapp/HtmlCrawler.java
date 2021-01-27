@@ -39,14 +39,14 @@ public class HtmlCrawler extends WebCrawler{
     public Map<String, Integer> findKeywords(String textFromUrl, Site site) {
         Map<String, Integer> keywordsCount = new LinkedHashMap<>();
         int totalCount = 0;
-        for (Map.Entry<String, Integer> pointWord : site.getKeywords().entrySet()) {
+        for (Map.Entry<String, Integer> keyword : site.getKeywords().entrySet()) {
             int count = 0;
-            Pattern pattern = Pattern.compile("[\": ]" + pointWord.getKey() + "[,.\":' ]");
+            Pattern pattern = Pattern.compile("[\": ]" + keyword.getKey() + "[,.\":' ]");
             Matcher matcher = pattern.matcher(textFromUrl);
             while (matcher.find()) {
                 count++;
             }
-            keywordsCount.put(pointWord.getKey(), count);
+            keywordsCount.put(keyword.getKey(), count);
             totalCount += count;
         }
         keywordsCount.put("Total", totalCount);
