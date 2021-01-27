@@ -13,6 +13,7 @@ public class CrawlerConfig {
     private final String seedPage;
     private final int maxCrawlDepth;
     private final int maxPageToFetch;
+    private final String[] keywords;
 
     public void startCrawler() throws Exception {
         final String CRAWL_STORAGE = "src/test/resources/crawler4j";
@@ -30,10 +31,10 @@ public class CrawlerConfig {
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
+        CrawlController.WebCrawlerFactory<HtmlCrawler> factory = () -> new HtmlCrawler(keywords);
 
         controller.addSeed(seedPage);
-        controller.start(HtmlCrawler.class, NUMBER_OF_CRAWLERS);
+        controller.start(factory, NUMBER_OF_CRAWLERS);
     }
+
 }
-
-

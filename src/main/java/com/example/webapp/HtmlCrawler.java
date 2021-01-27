@@ -4,17 +4,17 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
+import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@AllArgsConstructor
 public class HtmlCrawler extends WebCrawler{
-    public static List<String> links = new ArrayList();
 
+    private final String[] keywords;
     private final static Pattern FILTERS = Pattern
             .compile(".*(\\.(css|js|gif|jpg|png|mp3|mp4|zip|gz))$");
 
@@ -29,11 +29,10 @@ public class HtmlCrawler extends WebCrawler{
         if (page.getParseData() instanceof HtmlParseData) {
             HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
             String textFromUrl = htmlParseData.getText();
-            Site site = new Site();
-            links.add(page.getWebURL().toString());
+            Site site = new Site(keywords);
             site.setUrl(page.getWebURL().toString());
             site.setKeywords(findKeywords(textFromUrl, site));
-            WebCrawlerApp.getFinalSites().add(site);
+            WebCrawlerApp.getSites().add(site);
         }
     }
 

@@ -12,11 +12,11 @@ public class Site implements Comparable<Site> {
 
     private String url;
     private Map<String, Integer> keywords = new LinkedHashMap<>();
-    {
-        keywords.put("Tesla", 0);
-        keywords.put("Musk", 0);
-        keywords.put("Gigafactory", 0);
-        keywords.put("Elon Mask", 0);
+
+    public Site(String[] keywords) {
+        for (String word : keywords) {
+            this.keywords.put(word, 0);
+        }
     }
 
     @Override
