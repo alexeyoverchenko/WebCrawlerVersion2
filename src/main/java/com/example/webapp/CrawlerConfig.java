@@ -18,7 +18,7 @@ public class CrawlerConfig {
     public void startCrawler() throws Exception {
         final String CRAWL_STORAGE = "src/test/resources/crawler4j";
         final int NUMBER_OF_CRAWLERS = 4;
-        final int MAX_OUT_GOING_LINKS_TO_FOLLOW = 10;
+        final int MAX_OUT_GOING_LINKS_TO_FOLLOW = 100;
 
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(CRAWL_STORAGE);
